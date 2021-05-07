@@ -1,0 +1,9 @@
+{
+  "app": {
+    "name": "Pecker Flutter"
+  },
+  "locales": {
+    "zh": "简体中文",
+    "en": "英语"
+  }
+}

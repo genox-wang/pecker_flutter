@@ -4,7 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:get/get.dart';
 
 import '../../utils/screen.dart';
-import '../themes/app_text_styles.dart';
 
 class MySelectionBottomSheet extends StatelessWidget {
   MySelectionBottomSheet({
@@ -94,10 +93,7 @@ class MySelectionBottomSheet extends StatelessWidget {
         height: height,
         // color: Theme.of(context).cardColor,
         alignment: Alignment.center,
-        child: Text(
-          text,
-          style: AppTextStyles.subTitle,
-        ),
+        child: Text(text, style: TextStyle(fontSize: 40.sp)),
       ),
     );
   }

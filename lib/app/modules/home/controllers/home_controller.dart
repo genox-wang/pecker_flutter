@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+import '../../../data/services/index.dart';
 
+class HomeController extends GetxController {
+  @override
+  void onInit() {
+    TaskService.to.contextGot.complete();
+    super.onInit();
+  }
 }

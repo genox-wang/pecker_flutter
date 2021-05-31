@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../../themes/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../utils/log.dart';
+import '../../themes/app_theme.dart';
 
 final S = () => Get.find<SharedPreferecesService>();
 
@@ -28,6 +28,15 @@ class SharedPreferecesService extends GetxService {
   void onClose() {
     super.onClose();
   }
+
+  String get token => _prefs.getString('_token') ?? '';
+  set token(String value) => _prefs.setString('_token', value);
+
+  String get imeiOrIdfa => _prefs.getString('idfaOrImei') ?? '';
+  set imeiOrIdfa(String value) => _prefs.setString('idfaOrImei', value);
+
+  String get deviceMode => _prefs.getString('deviceMode') ?? '';
+  set deviceMode(String value) => _prefs.setString('deviceMode', value);
 
   String get languageCode => _prefs.getString('languageCode') ?? 'zh';
   set languageCode(String value) => _prefs.setString('languageCode', value);

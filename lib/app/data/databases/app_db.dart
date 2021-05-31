@@ -12,10 +12,8 @@ part 'app_db.g.dart';
 @UseMoor(
   // relative import for the moor file. Moor also supports `package:`
   // imports
-  tables: [
-  ],
-  daos: [
-  ],
+  tables: [],
+  daos: [],
 )
 class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());

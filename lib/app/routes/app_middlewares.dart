@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 import '../../utils/log.dart';
+import '../data/services/index.dart';
+import 'index.dart';
 
 class AppMiddlewares {
   static routingCallback(Routing? routing) {
@@ -15,21 +17,26 @@ isBack: ${routing?.isBack}''');
     _checkRouteChange('${routing?.route?.settings.name}');
   }
 
-  static String _oldRoute = '';
-  static String get oldRoute => _oldRoute;
+  static String _curRoute = '';
+  static String get oldRoute => _curRoute;
 
   static _checkRouteChange(String newRoute) {
     // 空路由不算
     if (newRoute == '') {
       return;
     }
-    if (_oldRoute == newRoute) {
+    if (_curRoute == newRoute) {
       return;
     }
-    sLog.d('route changed: $_oldRoute => $newRoute');
-    _routeChanged(_oldRoute, newRoute);
+    if (_curRoute.isNotEmpty) {
+      T().pageEnd(_curRoute);
+    }
+    if (newRoute != Routes.SPLASH) T().pageStart(newRoute);
+    sLog.d('route changed: $_curRoute => $newRoute');
 
-    _oldRoute = newRoute;
+    _routeChanged(_curRoute, newRoute);
+
+    _curRoute = newRoute;
   }
 
   static _routeChanged(String oldRoute, String newRoute) {

@@ -97,25 +97,9 @@
 
 ## 如何使用
 
-### setup 规范 是什么？
+### 代码规范
 
-1. 不出现业务代码
-2. 只包含 Service 类
-3. 多 Service 如果有依赖关系，需要严格使用 `await` 控制。
-
-```dart
-Future initServices() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  Get.put(TaskService()..init());
-  await Get.putAsync(() => ConnectivityService().init());
-
-  await Get.putAsync(() => SharedPreferecesService().init());
-  Get.put(DbService());
-  await Get.putAsync(() => AppService().init());
-
-  await Get.putAsync(() => VibrationService().init());
-}
-```
+[代码规范](docs/code_standards.md)
 
 ### 怎么创建新界面
 

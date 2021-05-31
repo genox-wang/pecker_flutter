@@ -22,6 +22,7 @@ class MyDialog extends StatelessWidget {
     this.cancelText = 'CANCEL',
     this.onConfirm,
     this.willPop = true,
+    this.width,
     this.hasClose = false,
   }) : super(
           key: key,
@@ -37,6 +38,7 @@ class MyDialog extends StatelessWidget {
   final String confirmText;
   final String cancelText;
   final Future<bool> Function(MyButtonController)? onConfirm;
+  final double? width;
   final bool willPop;
   final bool hasClose;
 
@@ -53,7 +55,7 @@ class MyDialog extends StatelessWidget {
         constraints: BoxConstraints(
           minHeight: 100,
         ),
-        width: 900.w,
+        width: width ?? 900.w,
         child: Stack(
           children: [
             Column(
@@ -74,12 +76,13 @@ class MyDialog extends StatelessWidget {
                         color: Theme.of(context).cardColor,
                       ),
                     ),
-                Divider(
-                  thickness: 1.5,
-                  indent: 50.w,
-                  endIndent: 50.w,
-                  height: 1.5,
-                ),
+                if (titleText.isNotEmpty == true)
+                  Divider(
+                    thickness: 1.5,
+                    indent: 50.w,
+                    endIndent: 50.w,
+                    height: 1.5,
+                  ),
                 body ??
                     Padding(
                       padding: EdgeInsets.fromLTRB(80.w, 80.w, 80.w, 80.w),

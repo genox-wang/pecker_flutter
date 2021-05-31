@@ -4,14 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:supercharged/supercharged.dart';
 
-import '../app/data/services/task_service.dart';
-import '../app/global_widgets/controllers/my_button_controller.dart';
-import '../app/global_widgets/my_bubble_box.dart';
-import '../app/global_widgets/my_dialog.dart';
-import '../app/global_widgets/my_selection_bottom_sheet.dart';
+import '../app/data/services/index.dart';
+import '../app/global_widgets/index.dart';
 import '../app/routes/app_pages.dart';
 import 'screen.dart';
 
@@ -128,6 +126,7 @@ class MyUI {
         willPop: willPop,
         hasClose: hasClose,
       ),
+      transitionDuration: Duration.zero,
       barrierDismissible: barrierDismissible,
       routeSettings: RouteSettings(name: routeName ?? ''),
     );
@@ -191,6 +190,7 @@ class MyUI {
           hasClose: hasClose,
         ),
         barrierDismissible: barrierDismissible,
+        transitionDuration: Duration.zero,
         routeSettings: RouteSettings(name: routeName ?? ''));
   }
 
@@ -204,6 +204,7 @@ class MyUI {
     Color? backgroundColor,
     bool willPop = true,
     bool hasClose = true,
+    Object? arguments,
     Future<bool> Function(MyButtonController)? onConfirm,
     required String routeName,
     required Function onDispose,
@@ -220,6 +221,7 @@ class MyUI {
           title: title,
           titleText: titleText,
           body: page.page(),
+          width: 1000.w,
           cancelText: cancelText,
           confirmText: confirmText,
           backgroundColor: backgroundColor,
@@ -229,7 +231,11 @@ class MyUI {
         ),
       ),
       barrierDismissible: barrierDismissible,
-      routeSettings: RouteSettings(name: routeName),
+      transitionDuration: Duration.zero,
+      routeSettings: RouteSettings(
+        name: routeName,
+        arguments: arguments,
+      ),
     ).then((value) {
       onDispose();
       return value;
@@ -333,10 +339,15 @@ class MyUI {
 
   static UniqueKey? _loadingKey;
 
+  static final _loadingShowed = false.obs;
+  static get loadingShowed => _loadingShowed.value;
+  static set loadingShowed(value) => _loadingShowed.value = value;
+
   static showLoading() {
     if (_loadingKey != null) {
       return;
     }
+    loadingShowed = true;
     _loadingKey = UniqueKey();
     BotToast.showWidget(
       toastBuilder: (_) {
@@ -344,8 +355,20 @@ class MyUI {
           behavior: HitTestBehavior.translucent,
           onTap: () {},
           child: Container(
-              // color: Colors.black.withAlpha(40),
+            alignment: Alignment.center,
+            child: Container(
+              alignment: Alignment.center,
+              width: 400.w,
+              height: 400.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.w),
+                  color: Colors.black26),
+              child: SpinKitFadingCircle(
+                color: Colors.white,
+                size: 50.0,
               ),
+            ),
+          ),
         );
       },
       key: _loadingKey,
@@ -356,8 +379,35 @@ class MyUI {
     if (_loadingKey == null) {
       return;
     }
+    loadingShowed = false;
     BotToast.remove(_loadingKey!);
     _loadingKey = null;
+  }
+
+  static UniqueKey? _maskKey;
+
+  static showMask() {
+    if (_maskKey != null) {
+      return;
+    }
+    _maskKey = UniqueKey();
+    BotToast.showWidget(
+      toastBuilder: (_) {
+        return GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {},
+        );
+      },
+      key: _maskKey,
+    );
+  }
+
+  static hideMask() {
+    if (_maskKey == null) {
+      return;
+    }
+    BotToast.remove(_maskKey!);
+    _maskKey = null;
   }
 }
 

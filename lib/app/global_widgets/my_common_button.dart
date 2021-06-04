@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/index.dart';
-import 'controllers/my_button_controller.dart';
 import 'my_button.dart';
 
 class MyCommonButton extends StatelessWidget {
@@ -26,7 +25,7 @@ class MyCommonButton extends StatelessWidget {
   final String? sub;
   final Color titleColor;
   final Color? subColor;
-  final Function(MyButtonController)? onTap;
+  final Function()? onTap;
   final Object? simpleButtonGroup;
 
   @override

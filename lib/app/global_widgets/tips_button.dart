@@ -5,7 +5,7 @@ import 'package:supercharged/supercharged.dart';
 
 import '../../utils/index.dart';
 import '../data/services/vibration_service.dart';
-import 'simple_button.dart';
+import 'anim_button.dart';
 
 class TipsButton extends StatelessWidget {
   TipsButton({
@@ -45,7 +45,7 @@ class TipsButton extends StatelessWidget {
 
   Widget buildButton(BuildContext context) {
     final h = height ?? 70.w;
-    return SimpleButton(
+    return AnimButton(
       onTap: onTap != null
           ? () {
               VibrationService.to.tapVibrate();

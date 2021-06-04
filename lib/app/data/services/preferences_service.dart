@@ -41,6 +41,7 @@ class SharedPreferecesService extends GetxService {
   String get languageCode => _prefs.getString('languageCode') ?? 'zh';
   set languageCode(String value) => _prefs.setString('languageCode', value);
 
+  /// 应用主题
   AppThemeMode get appThemeMode =>
       AppThemeMode.values[_prefs.getInt('appThemeMode') ?? 0];
   set appThemeMode(AppThemeMode value) =>

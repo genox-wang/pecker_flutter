@@ -15,6 +15,7 @@ import 'index.dart';
 
 // import 'package:flutter_user_agentx/flutter_user_agent.dart';
 
+/// 应用相关服务
 class AppService extends GetxService {
   static AppService get to => Get.find();
 
@@ -47,10 +48,15 @@ class AppService extends GetxService {
 
   Future<AppService> init() async {
     sLog.e("AppService init");
+    // 获取本地文件系统路劲
     await initDirs();
+    // 获取 imei 或 idfa
     await loadImeiOrIdfa();
+    // 获取包信息
     await loadPackageInfo();
+    // 获取 UA
     await loadUserAgent();
+    // 获取设备信息
     await loadDeviceInfo();
     return this;
   }

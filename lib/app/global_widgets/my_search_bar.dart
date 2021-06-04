@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/screen.dart';
 
+/// 通用搜索框
 class MySearchBar extends StatelessWidget {
   MySearchBar({
     this.width,

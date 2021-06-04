@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../utils/screen.dart';
 
+/// 底部弹出选择框
 class MySelectionBottomSheet extends StatelessWidget {
   MySelectionBottomSheet({
     this.title,

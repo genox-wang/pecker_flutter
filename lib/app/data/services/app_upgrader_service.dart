@@ -5,6 +5,8 @@ import 'index.dart';
 
 part 'mixins/app_upgrader_infos_mixin.dart';
 
+
+/// 应用更新服务
 class AppUpgraderService extends GetxService {
   static AppUpgraderService get to => Get.find();
 
@@ -18,6 +20,7 @@ class AppUpgraderService extends GetxService {
     return this;
   }
 
+  /// 展示当前版本的更新内容
   Future tryShowUpgraderInfo() async {
     final buildNumber = AppService.to.buildNumber;
     final version = AppService.to.version;

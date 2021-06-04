@@ -5,14 +5,12 @@ import 'package:moor/moor.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-// These imports are only needed to open the database
-
 part 'app_db.g.dart';
 
 @UseMoor(
-  // relative import for the moor file. Moor also supports `package:`
-  // imports
+  // 绑定 tables
   tables: [],
+  // 绑定 daos
   daos: [],
 )
 class AppDb extends _$AppDb {
@@ -21,6 +19,7 @@ class AppDb extends _$AppDb {
   @override
   int get schemaVersion => 1;
 
+  /// 数据库版本升级处理代码在这里进行
   @override
   MigrationStrategy get migration => MigrationStrategy(
       onCreate: (Migrator m) {
@@ -30,10 +29,8 @@ class AppDb extends _$AppDb {
 }
 
 LazyDatabase _openConnection() {
-  // the LazyDatabase util lets us find the right location for the file async.
   return LazyDatabase(() async {
-    // put the database file, called db.sqlite here, into the documents folder
-    // for your app.
+    /// 定义数据库存储路劲
     final file = File(p.join(
         (await getApplicationDocumentsDirectory()).path, 'app_db.sqlite'));
     return VmDatabase(file);

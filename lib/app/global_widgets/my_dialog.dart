@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/screen.dart';
-import 'controllers/my_button_controller.dart';
 import 'my_button.dart';
 import 'pop_anim_box.dart';
 
@@ -16,10 +15,10 @@ class MyDialog extends StatelessWidget {
     this.insetPadding,
     this.title,
     this.body,
-    this.titleText = 'title',
-    this.bodyText = 'body',
-    this.confirmText = 'OK',
-    this.cancelText = 'CANCEL',
+    this.titleText = '',
+    this.bodyText = '',
+    this.confirmText = '',
+    this.cancelText = '',
     this.onConfirm,
     this.willPop = true,
     this.width,
@@ -37,7 +36,7 @@ class MyDialog extends StatelessWidget {
   final String bodyText;
   final String confirmText;
   final String cancelText;
-  final Future<bool> Function(MyButtonController)? onConfirm;
+  final Future<bool> Function()? onConfirm;
   final double? width;
   final bool willPop;
   final bool hasClose;
@@ -102,7 +101,7 @@ class MyDialog extends StatelessWidget {
                               buildButton(
                                 text: cancelText,
                                 color: Colors.orange,
-                                onTap: (_) {
+                                onTap: () {
                                   Get.back(
                                     result: MyDialogActions.cancel,
                                   );
@@ -115,10 +114,10 @@ class MyDialog extends StatelessWidget {
                               buildButton(
                                 text: confirmText,
                                 color: Theme.of(context).primaryColor,
-                                onTap: (controller) async {
+                                onTap: () async {
                                   bool isClose = true;
                                   if (onConfirm != null) {
-                                    isClose = await onConfirm!(controller);
+                                    isClose = await onConfirm!();
                                   }
                                   if (isClose) {
                                     Get.back(
@@ -164,7 +163,7 @@ class MyDialog extends StatelessWidget {
   buildButton({
     required String text,
     required Color color,
-    Function(MyButtonController)? onTap,
+    Function()? onTap,
   }) {
     return Flexible(
       child: MyButton(
@@ -174,8 +173,8 @@ class MyDialog extends StatelessWidget {
         fontSize: 40.sp,
         backgroundColor: color,
         fontColor: Colors.white,
-        onTap: (conroller) {
-          onTap?.call(conroller);
+        onTap: () {
+          onTap?.call();
         },
       ),
     );

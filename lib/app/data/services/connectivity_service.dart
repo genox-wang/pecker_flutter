@@ -3,6 +3,20 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 
+/// 设备网络连接监听服务
+/// 
+/// ```
+/// _connectivityWorker =
+///   ever<ConnectivityResult>(ConnectivityService.to.rsStatus, (status) {
+///     if (status == ConnectivityResult.none) {
+///       close();
+///     } else {
+///       connect();
+///     }
+///   });
+/// ...
+/// _connectivityWorker.dispose();
+/// ```
 class ConnectivityService extends GetxService {
   static ConnectivityService get to => Get.find();
 

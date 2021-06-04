@@ -3,48 +3,53 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-class SimpleButton extends StatefulWidget {
+/// 带动画的按钮
+/// [tapTime] 按钮触发时机
+/// [group] 分组，同组不能同时触发点击事件
+/// [animController] 外部传入可以控制按钮动画
+/// [endScale] 播放完成的大小，< 1 播放缩小动画 >1 播放放大动画
+class AnimButton extends StatefulWidget {
   final Function()? onTap;
   final Widget? child;
   final HitTestBehavior? behavior;
-  final SimpleButtonTapTime tapTime;
-  // SimpleButton 支持组配置，同组内的按键同时只能触发一个，其他都会被忽略
+  final AnimButtonTapTime tapTime;
+  // AnimButton 支持组配置，同组内的按键同时只能触发一个，其他都会被忽略
   final Object? group;
   final Function(dynamic)? onTapDown;
   final Function(dynamic)? onTapUp;
   final Function()? onTapCancel;
   final Duration? duration;
   final Duration? reverseDuration;
-  final SimpleButtonAnimController? animController;
-  final double? end;
+  final AnimButtonAnimController? animController;
+  final double? endScale;
 
-  SimpleButton({
+  AnimButton({
     key,
     this.onTap,
     this.behavior,
-    this.tapTime = SimpleButtonTapTime.BeforeAnim,
+    this.tapTime = AnimButtonTapTime.BeforeAnim,
     this.group,
     this.onTapDown,
     this.onTapUp,
     this.onTapCancel,
     this.duration,
     this.reverseDuration,
-    this.end,
+    this.endScale,
     this.animController,
     @required this.child,
   }) : super(key: key);
 
   @override
-  _SimpleButtonState createState() => _SimpleButtonState();
+  _AnimButtonState createState() => _AnimButtonState();
 }
 
-class _SimpleButtonState extends State<SimpleButton> with AnimationMixin {
+class _AnimButtonState extends State<AnimButton> with AnimationMixin {
   late Animation<double> scale;
 
   @override
   void initState() {
     scale = 1.0
-        .tweenTo(widget.end ?? 0.95)
+        .tweenTo(widget.endScale ?? 0.95)
         .curved(Curves.bounceInOut)
         .animatedBy(controller);
     // scale.curve(Curves.elasticOut);
@@ -70,23 +75,23 @@ class _SimpleButtonState extends State<SimpleButton> with AnimationMixin {
           : () {
               // 配置了组，则要判断下同组事件才决定是不是触发点击事件
               if (widget.group != null) {
-                var noLock = _simpleButtonGroupLocks.add(widget.group!);
+                var noLock = _animButtonGroupLocks.add(widget.group!);
                 if (!noLock) {
                   return;
                 }
               }
-              if (widget.tapTime == SimpleButtonTapTime.WhenTap) {
+              if (widget.tapTime == AnimButtonTapTime.WhenTap) {
                 widget.onTap?.call();
               }
               if (!controller.isAnimating) {
-                if (widget.tapTime == SimpleButtonTapTime.BeforeAnim) {
+                if (widget.tapTime == AnimButtonTapTime.BeforeAnim) {
                   widget.onTap?.call();
                 }
                 playAnim().then((value) {
                   if (widget.group != null) {
-                    _simpleButtonGroupLocks.remove(widget.group);
+                    _animButtonGroupLocks.remove(widget.group);
                   }
-                  if (widget.tapTime == SimpleButtonTapTime.AfterAnim) {
+                  if (widget.tapTime == AnimButtonTapTime.AfterAnim) {
                     widget.onTap?.call();
                   }
                 });
@@ -111,11 +116,11 @@ class _SimpleButtonState extends State<SimpleButton> with AnimationMixin {
 /// [BeforeAnim] 动画播放前
 /// [AfterAnim] 动画播放完
 /// [WhenTap] 是要 onTap 就触发
-enum SimpleButtonTapTime { BeforeAnim, AfterAnim, WhenTap }
+enum AnimButtonTapTime { BeforeAnim, AfterAnim, WhenTap }
 
-// SimpleButton 支持组配置，同组内的按键同时只能触发一个，其他都会被忽略
-Set<Object> _simpleButtonGroupLocks = Set<Object>();
+// AnimButton 支持组配置，同组内的按键同时只能触发一个，其他都会被忽略
+Set<Object> _animButtonGroupLocks = Set<Object>();
 
-class SimpleButtonAnimController {
+class AnimButtonAnimController {
   Function()? play;
 }

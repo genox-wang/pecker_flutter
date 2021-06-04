@@ -44,7 +44,7 @@ class WebSocketService extends GetxService {
     super.onInit();
   }
 
-  String get wsHost => kReleaseMode ? Config.WS_HOST : Config.WS_HOST_TEST;
+  String get wsHost => Config.WS_HOST;
 
   @override
   void onClose() {

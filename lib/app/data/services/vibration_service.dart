@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';
 
+/// 震动服务
 class VibrationService extends GetxService {
   static VibrationService get to => Get.find();
 
@@ -23,9 +24,9 @@ class VibrationService extends GetxService {
     return this;
   }
 
+  /// 点击震动
   tapVibrate() {
     if (!support) return;
-    // Vibration.cancel();
     if (customSupport) {
       if (amplitudeSupport) {
         Vibration.vibrate(pattern: [0, 10], intensities: [100]);

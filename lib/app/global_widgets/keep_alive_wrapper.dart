@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+/// KeepAlive 包装
+/// 
+/// ```
+/// PageView(
+///   children: [
+///     KeepAliveWrapper(child: GameHallView()),
+///    `KeepAliveWrapper(child: BattleHallView()),
+///     KeepAliveWrapper(child: DailyChallengeRankView()),
+///   ],
+/// )
+/// ```
 class KeepAliveWrapper extends StatefulWidget {
   final Widget child;
 

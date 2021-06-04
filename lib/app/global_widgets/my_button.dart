@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-
 import '../data/services/vibration_service.dart';
-import 'controllers/my_button_controller.dart';
-import 'simple_button.dart';
+import 'anim_button.dart';
 
 // import 'package:auto_size_text/auto_size_text.dart';
 
@@ -31,7 +26,7 @@ class MyButton extends StatefulWidget {
   final double? width;
   final double? height;
   final double? radius;
-  final Function(MyButtonController)? onTap;
+  final Function()? onTap;
   final Widget? child;
   final String? text;
   final double? fontSize;
@@ -45,19 +40,16 @@ class MyButton extends StatefulWidget {
 }
 
 class _MyButtonState extends State<MyButton> {
-  final controller = MyButtonController();
-
   @override
   Widget build(BuildContext context) {
     final color = widget.backgroundColor ?? Theme.of(context).primaryColor;
-    return SimpleButton(
+    return AnimButton(
       group: widget.group,
       onTap: () {
-        if (controller.isLoading) {
-          return;
+        if (widget.onTap != null) {
+          VibrationService.to.tapVibrate();
+          widget.onTap!.call();
         }
-        VibrationService.to.tapVibrate();
-        widget.onTap?.call(controller);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -95,25 +87,16 @@ class _MyButtonState extends State<MyButton> {
         alignment: Alignment.center,
         width: widget.width ?? double.infinity,
         height: widget.height ?? 80,
-        child: Obx(
-          () => controller.isLoading
-              ? SpinKitRing(
-                  size: widget.fontSize ?? 20,
-                  lineWidth:
-                      widget.fontSize == null ? 3 : (widget.fontSize ?? 16) / 6,
-                  color: widget.fontColor ?? Colors.white)
-              // ? CupertinoActivityIndicator()
-              : widget.child ??
-                  Text(
-                    widget.text ?? '',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: widget.fontSize ?? 16,
-                        color: widget.fontColor ??
-                            Theme.of(context).textTheme.button?.color),
-                    maxLines: 2,
-                  ),
-        ),
+        child: widget.child ??
+            Text(
+              widget.text ?? '',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: widget.fontSize ?? 16,
+                  color: widget.fontColor ??
+                      Theme.of(context).textTheme.button?.color),
+              maxLines: 2,
+            ),
       ),
     );
   }

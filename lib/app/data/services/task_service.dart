@@ -23,15 +23,7 @@ class TaskService extends GetxService {
     // contextGot 会在 HomeController.onInit complete
     // 这样可以保证所有的任务会在到达住界面再开始执行
     await doTask(
-      () {
-        // Timer.periodic(Duration(milliseconds: 100), (timer) {
-        //   if () {
-        //     timer.cancel();
-        //     contextGot.complete();
-        //   }
-        // });
-        return contextGot.future;
-      },
+      () => contextGot.future,
       // 等待 home 任务用不超时
       timeout: Duration(
         hours: 10,
@@ -41,18 +33,7 @@ class TaskService extends GetxService {
 
   Future doTask(Future Function() task, {Lock? lock, Duration? timeout}) {
     final _lock = lock ?? _dialogLock;
-    return _lock.synchronized(() async {
-      // final t = timeout ?? Duration(seconds: 3);
-      return Future.any([
-        // Future.delayed(t, () {
-        //   throw TimeoutException('after $t: Future not completed');
-        // }),
-        task()
-      ]).catchError((e) {
-        sLog.e('TaskService error $e');
-        T().error('TaskService error $e');
-      });
-    });
+    return _lock.synchronized(() => task());
   }
 
   Future showDialog(Future Function() show) {

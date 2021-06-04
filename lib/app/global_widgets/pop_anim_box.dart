@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// 弹出Dialog 动画包装
+/// 
+/// ```
 /// Widget build(BuildContext context) {
 ///   return Dialog(
 ///     insetPadding: EdgeInsets.zero,
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart';
 ///     ),
 ///   );
 /// }
+/// ```
 class PopAnimBox extends StatefulWidget {
   PopAnimBox({
     required this.child,

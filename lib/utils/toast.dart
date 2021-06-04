@@ -7,20 +7,37 @@ import '../app/data/services/index.dart';
 import 'index.dart';
 
 class Toast {
+
+  /// 普通信息提示
   static i(String title, String message,
       {Duration duration = const Duration(seconds: 2)}) {
     show(title, message, LineAwesomeIcons.bell, duration: duration);
   }
 
+  /// 错误提示
   static e(String title, String message,
       {Duration duration = const Duration(seconds: 2)}) {
     show(title, message, LineAwesomeIcons.info_circle, duration: duration);
   }
 
+  /// 网络错误提示
+  /// 
+  /// ```
+  /// final result = await GameApis.requestChallengeBoard(date);
+  /// if (result.statusCode == 200) {
+  ///    ...
+  /// }
+  /// Toast.httpE('获取棋盘失败', result.statusCode);
+  /// ```
   static httpE(String title, int? status) {
     e(title, HttpService.to.errorInfo(status));
   }
 
+  /// 弹出 Toast
+  /// 
+  /// [title] 标题
+  /// [message] 信息
+  /// [iconData] icon
   static show(String title, String message, IconData iconData,
       {Duration duration = const Duration(seconds: 2)}) {
     BotToast.showEnhancedWidget(

@@ -51,7 +51,7 @@ class HttpService extends g.GetxService {
     return this;
   }
 
-  String get apiHost => kReleaseMode ? Config.API_HOST : Config.API_HOST_TEST;
+  String get apiHost => Config.API_HOST;
 
   static Stream<List<int>> bytes(Uint8List data) {
     return Stream.fromIterable(data.map((e) => [e]));

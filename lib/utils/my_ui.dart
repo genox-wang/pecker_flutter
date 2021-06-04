@@ -14,9 +14,8 @@ import '../app/routes/app_pages.dart';
 import 'screen.dart';
 
 class MyUI {
-
   /// 通用 snackbar 基于 Get.snackbar 包装
-  /// 
+  ///
   /// [title] 标题
   /// [message] 信息
   /// [icon] 左侧 icon
@@ -75,12 +74,12 @@ class MyUI {
     );
   }
 
-   /// 默认弹窗，多次调用，按顺序弹出
-   /// 
-   /// ```
-   /// MyUI.showSyncDefaultDialog(
-   ///     title: '账号被踢出', body: '您的账号在其他设备登录！', confirmText: '确定');
-   /// ```
+  /// 默认弹窗，多次调用，按顺序弹出
+  ///
+  /// ```
+  /// MyUI.showSyncDefaultDialog(
+  ///     title: '账号被踢出', body: '您的账号在其他设备登录！', confirmText: '确定');
+  /// ```
   static Future showSyncDefaultDialog(
       {String title: '',
       String body = '',
@@ -105,7 +104,7 @@ class MyUI {
   }
 
   /// 默认弹窗
-  /// 
+  ///
   /// ```
   /// await MyUI.showDefaultDialog(
   ///   title: 'v $version 更新内容',
@@ -113,7 +112,7 @@ class MyUI {
   ///   confirmText: '知道了',
   ///   barrierDismissible: false);
   /// ```
-  /// 
+  ///
   /// [title] 标题
   /// [body] 详情
   /// [hasClose] 是否显示右上角关闭按钮
@@ -142,8 +141,7 @@ class MyUI {
     );
   }
 
-
-  /// 自定义弹窗，多次调用，按顺序弹出 
+  /// 自定义弹窗，多次调用，按顺序弹出
   static Future<dynamic> showSyncDialog(
       {String titleText: '',
       String bodyText = '',
@@ -176,7 +174,7 @@ class MyUI {
   }
 
   /// 自定义弹窗
-  /// 
+  ///
   /// ```
   /// MyUI.showDialog(
   ///    titleText: '选择训练难度',
@@ -193,7 +191,7 @@ class MyUI {
   ///    )
   /// )
   /// ```
-  /// 
+  ///
   /// [titleText] 标题
   /// [title] 标题 Widget
   /// [bodyText] 详情
@@ -234,7 +232,7 @@ class MyUI {
   }
 
   /// Page 通过 Dialog 展示， 由于不通过路由无法自动释放 Controller 所以需要通过 [onDispose] 手动释放
-  /// 
+  ///
   /// ```
   /// MyUI.showPageDailog(
   ///   routeName: Routes.LOGIN,
@@ -242,7 +240,7 @@ class MyUI {
   ///   onDispose: loginBindingDispose,
   /// )
   /// ```
-  /// 
+  ///
   /// [titleText] 标题
   /// [title] 标题 Widget
   /// [bodyText] 详情
@@ -300,12 +298,12 @@ class MyUI {
   }
 
   /// Page 通过 BottomSheet 展示，由于不通过路由无法自动释放 Controller 所以需要通过 [onDispose] 手动释放
-  /// 
+  ///
   /// ```
   ///  MyUI.showPageBottomSheet(
   ///    routeName: Routes.STAGE_LIST, onDispose: stageListBindingDispose);
   /// ```
-  /// 
+  ///
   /// [routeName] 路由名
   /// [arguments] 路由传参
   static Future showPageBottomSheet({
@@ -354,7 +352,7 @@ class MyUI {
   }
 
   // 通用底部选择菜单
-  
+
   /// ```
   /// final level = await MyUI.showSelectionBottomSheet(
   ///    selections: List.generate(3,
@@ -391,7 +389,6 @@ class MyUI {
       settings: RouteSettings(name: routeName ?? ''),
     );
   }
-
 
   /// 关联组件的气泡弹窗
   ///
@@ -445,14 +442,14 @@ class MyUI {
   static set loadingShowed(value) => _loadingShowed.value = value;
 
   /// 展示加载动画，全屏添加遮罩，阻止点击事件
-  /// 
+  ///
   /// ```
   /// MyUI.showLoadng();
-  /// 
+  ///
   /// await doSomethine();
-  /// 
+  ///
   /// MyUI.hideLoading();
-  /// 
+  ///
   /// ```
   static showLoading() {
     if (_loadingKey != null) {

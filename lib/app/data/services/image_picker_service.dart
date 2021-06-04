@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 /// image_picker 包装服务
 class ImagePickerService extends GetxService {
   static ImagePickerService get to => Get.find();

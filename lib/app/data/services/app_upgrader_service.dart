@@ -5,7 +5,6 @@ import 'index.dart';
 
 part 'mixins/app_upgrader_infos_mixin.dart';
 
-
 /// 应用更新服务
 class AppUpgraderService extends GetxService {
   static AppUpgraderService get to => Get.find();

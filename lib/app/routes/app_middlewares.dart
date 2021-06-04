@@ -5,7 +5,6 @@ import '../../utils/log.dart';
 import '../data/services/index.dart';
 import 'index.dart';
 
-
 /// 全局中间件
 class AppMiddlewares {
   static routingCallback(Routing? routing) {
@@ -32,6 +31,7 @@ isBack: ${routing?.isBack}''');
     if (_curRoute == newRoute) {
       return;
     }
+
     /// 如果接入类似友盟的统计插件，根据路由会自动统计页面生命周期
     if (_curRoute.isNotEmpty) {
       T().pageEnd(_curRoute);

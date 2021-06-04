@@ -4,7 +4,7 @@ import 'package:bubble_box/bubble_box.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
 
 /// 和 Toast.showAttachedWidget 配合，显示有箭头的容器，箭头指向 [targetCenterOffset] 位置。根据 [child] 布局自动撑开容器
-/// 
+///
 /// ```
 /// BotToast.showAttachedWidget(
 ///   attachedBuilder: (closeBubble) => MyBubbleBox(

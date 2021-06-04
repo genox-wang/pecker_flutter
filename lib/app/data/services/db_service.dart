@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../databases/app_db.dart';
 
 /// 数据服务
-/// 
+///
 /// ```
 /// final gameBoard = await DbService.to.db.gameBoardsDao
 ///   .getOne(battleGameInfo.boardId);

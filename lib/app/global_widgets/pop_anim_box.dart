@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// 弹出Dialog 动画包装
-/// 
+///
 /// ```
 /// Widget build(BuildContext context) {
 ///   return Dialog(

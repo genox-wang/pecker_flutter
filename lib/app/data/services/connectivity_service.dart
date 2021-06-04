@@ -4,7 +4,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 
 /// 设备网络连接监听服务
-/// 
+///
 /// ```
 /// _connectivityWorker =
 ///   ever<ConnectivityResult>(ConnectivityService.to.rsStatus, (status) {

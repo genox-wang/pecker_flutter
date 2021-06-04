@@ -10,9 +10,9 @@ import 'controllers/my_tab_bar_controller.dart';
 const double _kTabHeight = 46.0;
 
 /// 配合 [MyPageView] 使用
-/// 
+///
 /// 实现 PageView 和 TabBar 的双向绑定
-/// 
+///
 /// ```
 /// MyTabBar(
 ///   tabs: tabs,
@@ -24,7 +24,7 @@ const double _kTabHeight = 46.0;
 ///   tabBarTag: 'tabbar_tag'
 /// )
 /// ```
-/// 
+///
 class MyTabBar extends StatefulWidget implements PreferredSizeWidget {
   MyTabBar({
     Key? key,

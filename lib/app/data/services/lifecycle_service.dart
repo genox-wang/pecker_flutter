@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /// 应用生命周期监听服务
-/// 
+///
 /// ```
 /// _lifecycleWorker =
 ///   ever<AppLifecycleState>(LifecycleService.to.rxStatus, (status) {

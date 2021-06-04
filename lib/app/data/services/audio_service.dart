@@ -4,9 +4,8 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 
-
 /// 音效服务
-/// 
+///
 /// 在 `init` 中预先缓存音频文件
 /// ```
 /// AudioService.to.play('error.mp3')

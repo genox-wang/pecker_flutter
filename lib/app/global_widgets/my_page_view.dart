@@ -6,11 +6,10 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'controllers/my_pageview_controller.dart';
 import 'controllers/my_tab_bar_controller.dart';
 
-
 /// 配合 [MyTabBar] 使用
-/// 
+///
 /// 实现 PageView 和 TabBar 的双向绑定
-/// 
+///
 /// ```
 /// MyTabBar(
 ///   tabs: tabs,
@@ -22,7 +21,7 @@ import 'controllers/my_tab_bar_controller.dart';
 ///   tabBarTag: 'tabbar_tag'
 /// )
 /// ```
-/// 
+///
 class MyPageView extends StatelessWidget {
   MyPageView({
     required this.pages,

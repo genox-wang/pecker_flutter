@@ -7,7 +7,6 @@ import '../app/data/services/index.dart';
 import 'index.dart';
 
 class Toast {
-
   /// 普通信息提示
   static i(String title, String message,
       {Duration duration = const Duration(seconds: 2)}) {
@@ -21,7 +20,7 @@ class Toast {
   }
 
   /// 网络错误提示
-  /// 
+  ///
   /// ```
   /// final result = await GameApis.requestChallengeBoard(date);
   /// if (result.statusCode == 200) {
@@ -34,7 +33,7 @@ class Toast {
   }
 
   /// 弹出 Toast
-  /// 
+  ///
   /// [title] 标题
   /// [message] 信息
   /// [iconData] icon

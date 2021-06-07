@@ -91,10 +91,19 @@
 
 ## 准备工作
 
+### 第三方插件文档
+
+- [get](https://github.com/jonataslaw/getx/blob/master/README.zh-cn.md)
+- [moor](https://moor.simonbinder.eu/docs/)
+### 工具安装
+
 安装 [get_cli](https://github.com/jonataslaw/get_cli),这样可以通过命令行创建界面和生成国际化代码，解放生产力。
 安装 [VSCode 插件](https://marketplace.visualstudio.com/items?itemName=get-snippets.get-snippets) 或者 [Android Studio/Intellij 插件](https://plugins.jetbrains.com/plugin/14975-getx-snippets)，它可以帮助在开发中提高开发效率，我用的最多的就是 `getfinal_`，不要问为什么，用了就知道。
 
 
+## Services
+
+[使用说明](docs/services/index.md)
 ## 如何使用
 
 ### 代码规范
@@ -135,18 +144,6 @@ loginBindingDispose() {
 
 ```
 
-### 怎么让拼任务顺序执行
-
-```dart
-// 下面 3 个弹出框会依次打开
-TaskService.to.doTask(() => MyUI.showDialog());
-TaskService.to.doTask(() => MyUI.showDialog());
-TaskService.to.doTask(() => MyUI.showDialog());
-
-// MyUI 库里提供了几个方法通过 TaskService 包装的
-MyUI.showSyncDefaultDialog();
-MyUI.showSyncDialog();
-```
 
 ### 怎么实现国际化
 
@@ -174,139 +171,4 @@ $ get generate locales assets/locales
 Text(
   LocaleKeys.app_name.tr
 )
-```
-
-### 怎么创建数据库
-
-在 `data/databases/tables` 目录下创建表文件 `game_steps.dart`
-
-```dart
-import 'package:moor/moor.dart';
-
-class GameSteps extends Table {
-  TextColumn get gameId => text()(); // 游戏 uuid
-  IntColumn get action => integer()(); // 操作 id
-  IntColumn get value => integer()(); // 操作的数字
-  IntColumn get index => integer()(); // 选中格子的索引
-  IntColumn get duration => integer()(); // 毫秒
-  IntColumn get stepId => integer()(); // 步骤序号递增
-}
-```
-
-在 `data/databases/daos` 目录下创建文件 `game_steps.dart`
-
-```dart
-import 'package:moor/moor.dart';
-
-import '../app_db.dart';
-import '../tables/game_steps.dart';
-
-
-part 'game_steps.g.dart';
-
-@UseDao(tables: [GameSteps])
-class GameStepsDao extends DatabaseAccessor<AppDb> with _$GameStepsDaoMixin {
-  GameStepsDao(AppDb db) : super(db);
-}
-```
-
-在 `data/databases/app_db.dart` 中添加 `GameSteps`和`GameStepsDao`
-
-```dart
- tables: [
-    GameSteps,
-  ],
-  daos: [
-    GameStepsDao,
-  ],
-)
-class AppDb extends _$AppDb { 
-
-```
-
-执行 
-
-```bash
-$ flutter pub run build_runner build 
-```
-
-表文件代码会自动生成，切绑定数据库，数据库代码就可以在 `GameStepsDao` 内进行编写了。
-
-
-### 怎么升级数据库
-
-数据库如果升级版本了，对应的迁移代码可以在 `AppDb.migration` 里编写。
-
-```dart
-class AppDb extends _$AppDb {
-  AppDb() : super(_openConnection());
-
-  @override
-  int get schemaVersion => 4;
-
-  @override
-  MigrationStrategy get migration => MigrationStrategy(onCreate: (Migrator m) {
-        return m.createAll();
-      }, onUpgrade: (Migrator m, int from, int to) async {
-        if (from == 1) {
-          await m.addColumn(userAvatars, userAvatars.expireTime);
-        }
-        if (from < 3) {
-          await m.createTable(notifications);
-        }
-        if (from < 4) {
-          await m.createTable(gameBoards);
-          await m.createTable(gameInfos);
-          await m.createTable(gameReplays);
-          await m.createTable(gameSteps);
-        }
-      });
-}
-
-```
-
-### 怎么监听应用的生命周期
-
-```dart
-  late Worker _lifecycleWorker;
-
-  @override
-  void onInit() {
-    _lifecycleWorker =
-        ever<AppLifecycleState>(LifecycleService.to.rxStatus, (status) {
-      if (status == AppLifecycleState.resumed) {
-        TaskService.to.doTask(() => checkBattleCustomRoom());
-      }
-    });
-    super.onInit();
-  }
-
-
-  @override
-  void onClose() {
-    _lifecycleWorker.dispose();
-    super.onClose();
-  }
-
-```
-
-### 怎么监听应用网络状态
-
-```dart
-  late Worker _connectivityWorker;
-
-
-  _connectivityWorker =
-      ever<ConnectivityResult>(ConnectivityService.to.rsStatus, (status) {
-    if (status == ConnectivityResult.none) {
-      close();
-    } else {
-      connect();
-    }
-  });
-
-
-  ...
-
-  _connectivityWorker.dispose()
 ```

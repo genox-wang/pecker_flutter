@@ -24,7 +24,6 @@ class AppService extends GetxService {
 
   int? buildNumber;
   String? version;
-  late String channel;
   late String? webviewUserAgent;
 
   late String packageName;

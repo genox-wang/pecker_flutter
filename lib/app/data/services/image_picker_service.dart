@@ -18,7 +18,7 @@ class ImagePickerService extends GetxService {
     super.onClose();
   }
 
-  Future<PickedFile?> getImage(bool isCamera) {
+  Future<PickedFile?> getImage({bool isCamera = false}) {
     return _picker.getImage(
         source: isCamera ? ImageSource.camera : ImageSource.gallery);
   }

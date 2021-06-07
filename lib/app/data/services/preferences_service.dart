@@ -41,6 +41,11 @@ class SharedPreferecesService extends GetxService {
   String get languageCode => _prefs.getString('languageCode') ?? 'zh';
   set languageCode(String value) => _prefs.setString('languageCode', value);
 
+  bool getIsUpgradeInfoShowed(int buildNumber) =>
+      _prefs.getBool('isUpradeInfoShowed_${buildNumber ~/ 100}') ?? false;
+  setIsUpgradeInfoShowed(int buildNumber, bool value) =>
+      _prefs.setBool('isUpradeInfoShowed_${buildNumber ~/ 100}', value);
+
   /// 应用主题
   AppThemeMode get appThemeMode =>
       AppThemeMode.values[_prefs.getInt('appThemeMode') ?? 0];

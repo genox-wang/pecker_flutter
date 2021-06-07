@@ -23,7 +23,12 @@ class AppUpgraderService extends GetxService {
   Future tryShowUpgraderInfo() async {
     final buildNumber = AppService.to.buildNumber;
     final version = AppService.to.version;
+
     if (buildNumber != null) {
+      if (S().getIsUpgradeInfoShowed(buildNumber)) {
+        return;
+      }
+      S().setIsUpgradeInfoShowed(buildNumber, true);
       if (_infos['${buildNumber ~/ 100}'] != null) {
         await MyUI.showDefaultDialog(
             title: 'v $version 更新内容',

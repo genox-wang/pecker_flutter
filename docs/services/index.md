@@ -47,7 +47,7 @@ AppService.to.deviceMode // 手机型号
 
 ### AppTraceService
 
-埋点服务, [使用说明](docs/services/app_trace.md)
+埋点服务, [使用说明](app_trace.md)
 
 ### AppUpraderService
 
@@ -135,7 +135,7 @@ BrowserService.to.openSystemBrowser('https://www.baidu.com');
 
 ### DBService
 
-数据库服务, [使用说明](docs/services/db_service.md)
+数据库服务, [使用说明](db_service.md)
 
 ### HttpService
 

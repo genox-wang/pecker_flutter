@@ -101,10 +101,39 @@
 安装 [VSCode 插件](https://marketplace.visualstudio.com/items?itemName=get-snippets.get-snippets) 或者 [Android Studio/Intellij 插件](https://plugins.jetbrains.com/plugin/14975-getx-snippets)，它可以帮助在开发中提高开发效率，我用的最多的就是 `getfinal_`，不要问为什么，用了就知道。
 
 
-## Services
+## 如何使用
+
+### 全局配置
+
+`app/config.dart` 进行全局应用必要参数配置
+
+```dart
+class Config {
+  /// 应用名
+  static const APP_NAME = 'Pecker Flutter';
+  /// 日志登记
+  static const LOG_LEVEL = Level.debug;
+  /// 是否输出 getx 日志
+  static const GETX_DEBUG = true;
+  // TODO 你的 Sentry Dsn
+  static const SENTRY_DSN = 'your SENTRY_DSN';
+  // TODO http 请求 host
+  static const API_HOST = kReleaseMode
+      ? 'API_HOST'
+      : 'API_HOST_TEST';
+  // TODO ws 请求 host
+  static const WS_HOST = kReleaseMode
+      ? 'WS_HOST'
+      : 'WS_HOST_TEST';
+}
+```
+
+### Services
 
 [使用说明](docs/services/index.md)
-## 如何使用
+
+
+
 
 ### 代码规范
 

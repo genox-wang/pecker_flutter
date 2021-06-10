@@ -139,6 +139,7 @@ BrowserService.to.openSystemBrowser('https://www.baidu.com');
 
 ### HttpService
 
+Http 服务, [使用说明](http.md)
 ### ImagePickerService
 
 相册访问服务
@@ -220,7 +221,6 @@ MyUI.showSyncDialog();
 VibrationService.to.tapVibrate();
 ```
 
-### WebsocketService
+### WebSocketService
 
-```dart
-```
+WebSocket 服务, [使用说明](ws.md)

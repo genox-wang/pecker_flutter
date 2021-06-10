@@ -14,6 +14,39 @@ import '../../../proto/response/common_response.pb.dart';
 import '../../../utils/index.dart';
 import 'index.dart';
 
+/// WebSocketService 服务
+///
+/// 支持断线重连
+/// 发送消息匹配返回消息
+/// 全局监听服务器消息
+/// 全局监听服务器状态
+///
+/// 后端教育协议是基于 proto 协议的
+/// 通用请求体是 [CommonRequest]
+/// 通用返回体是 [CommonResponse]
+/// 
+/// 下面代码是保证 ws 连接后执行相关代码
+/// ```
+/// everWsConnected(Function() doTask) {
+///    if (WebSocketService.to.wsState == WebSocketStatus.open) {
+///      doTask();
+///   }
+///    _wsStatusSub = WebSocketService.to.onStatusChanged.listen((event) {
+///      if (event == WebSocketStatus.open) {
+///        doTask();
+///     }
+///   });
+/// }
+/// ```
+/// 
+/// 下面代码是全局监听后端推送的信息
+/// ```
+/// _wsOnMessageSub = WebSocketService.to.onMessage.listen((resp) {
+///   ...
+/// })
+/// 
+/// _wsOnMessageSub.cancel();
+/// ```
 class WebSocketService extends GetxService {
   static WebSocketService get to => Get.find();
 
@@ -54,7 +87,12 @@ class WebSocketService extends GetxService {
     super.onClose();
   }
 
+  /// 超时时间
   final int receiveTimeout = 10000;
+  /// 断线重连延时
+  final Duration reconnectDelay = 5.seconds;
+  /// ping 间隔
+  final Duration pingInterval = 8.seconds;
 
   // 异步消息映射
   Map<String, Completer<CommonResponse>> _completers =
@@ -92,7 +130,7 @@ class WebSocketService extends GetxService {
       _reConnectDelayTimer?.cancel();
       _channel = IOWebSocketChannel.connect(
         Uri.parse(url),
-        pingInterval: Duration(seconds: 8),
+        pingInterval: pingInterval,
       );
       _channel?.stream.listen(
         (message) {
@@ -102,7 +140,7 @@ class WebSocketService extends GetxService {
           sLog.d("WebSocketService onError:", e, s);
           close();
           // 异常断开后5秒重连
-          reconnect(5.seconds);
+          reconnect(reconnectDelay);
         },
         onDone: () {
           sLog.d("WebSocketService onDone");
@@ -112,7 +150,7 @@ class WebSocketService extends GetxService {
           if (wsState != WebSocketStatus.closed &&
               wsState != WebSocketStatus.closing) {
             _setStatus(WebSocketStatus.closed);
-            reconnect(5.seconds);
+            reconnect(reconnectDelay);
           }
         },
       );
@@ -144,6 +182,7 @@ class WebSocketService extends GetxService {
   }
 
   Timer? _reConnectDelayTimer;
+
   // 延时重连
   reconnect(Duration delay) {
     sLog.d("WebSocketService reconnect");
@@ -153,6 +192,7 @@ class WebSocketService extends GetxService {
     });
   }
 
+  /// 断开连接
   close() {
     _lock.synchronized(() {
       sLog.d("WebSocketService close");
@@ -168,6 +208,13 @@ class WebSocketService extends GetxService {
     });
   }
 
+  /// 发送消息
+  /// 
+  /// 如果超过超时时间还没有收到消息则返回超时
+  /// 
+  /// ```
+  /// resp = await WebSocketService.to.send(d);
+  /// ```
   Future<CommonResponse> send(CommonRequest cmd) {
     if (_channel == null || _channel?.closeCode != null) {
       return Future.error(WebSocketChannelException("websocket not connected"));
@@ -179,7 +226,7 @@ class WebSocketService extends GetxService {
     _channel?.sink.add(cmd.writeToBuffer());
     _timeOutTimerMap[cmd.ticket] =
         Timer(Duration(milliseconds: receiveTimeout), () {
-      sLog.d("WebSocketService error ${cmd.protoType} timeout ");
+      sLog.e("WebSocketService error ${cmd.protoType} timeout ");
       _completers[cmd.ticket]
           ?.completeError(WebSocketChannelException("timeout"));
       _completers.remove(cmd.ticket);
@@ -200,7 +247,9 @@ class WebSocketService extends GetxService {
     _timeOutTimerMap[response.ticket]?.cancel();
     _timeOutTimerMap.remove(response.ticket);
     sLog.v("WebSocketService respose ${response.protoType} ${response.status}");
+    // 全局通过 onMessage 可以监听消息
     _onMessageController.add(response);
+    // 通过 send 发送的消息给到返回值
     var completer = _completers[response.ticket];
     _completers.remove(response.ticket);
     completer?.complete(response);

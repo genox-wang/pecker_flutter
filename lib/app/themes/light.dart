@@ -4,7 +4,7 @@ import 'base.dart';
 
 final lightTheme = baseTheme.copyWith(
   primaryColor: Color(0xFF1ac0c6),
-  dividerColor: Colors.grey[100],
+  dividerColor: Colors.grey[200],
   dividerTheme: DividerThemeData(space: 1, thickness: 0.7),
   scaffoldBackgroundColor: Colors.grey[100],
   canvasColor: Colors.grey[100],

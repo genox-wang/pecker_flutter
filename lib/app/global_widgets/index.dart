@@ -3,7 +3,6 @@ export 'controllers/my_pageview_controller.dart';
 export 'controllers/my_tab_bar_controller.dart';
 export 'keep_alive_wrapper.dart';
 export 'my_bubble_box.dart';
-export 'my_common_button.dart';
 export 'my_dialog.dart';
 export 'my_page_view.dart';
 export 'my_search_bar.dart';

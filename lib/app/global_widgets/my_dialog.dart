@@ -16,6 +16,7 @@ class MyDialog extends StatelessWidget {
     this.title,
     this.body,
     this.titleText = '',
+    this.titleColor,
     this.bodyText = '',
     this.confirmText = '',
     this.cancelText = '',
@@ -33,6 +34,7 @@ class MyDialog extends StatelessWidget {
   final Widget? title;
   final Widget? body;
   final String titleText;
+  final Color? titleColor;
   final String bodyText;
   final String confirmText;
   final String cancelText;
@@ -69,10 +71,11 @@ class MyDialog extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 50.sp,
                           fontWeight: FontWeight.bold,
+                          color: titleColor,
                         ),
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
+                        color: backgroundColor ?? Theme.of(context).cardColor,
                       ),
                     ),
                 if (titleText.isNotEmpty == true)

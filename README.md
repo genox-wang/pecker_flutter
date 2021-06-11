@@ -128,12 +128,13 @@ class Config {
 }
 ```
 
-### Services
+### 服务模块
 
 [使用说明](docs/services/index.md)
 
+### 全局通用组件
 
-
+[使用说明](docs/global_widgets/index.md)
 
 ### 代码规范
 

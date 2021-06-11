@@ -2,7 +2,7 @@
 
 <img src = "../images/global_widgets.GIF"  width = "40%"/>
 
-### anim_button
+### AnimButton
 让被包装的物体带点击事件，被点击的时候播放动画。
 在需要该特性的位置直接替换 `GestureDetector` 使用就可以了。
 - tapTime 按钮触发时机
@@ -34,7 +34,7 @@
 )
 ```
 
-### keep_alive_wrapper
+### KeepAliveWrapper
 
 KeepAlive 包装
 
@@ -51,7 +51,7 @@ PageView(
 )
 ```
  
-### my_bubble_box
+### MyBubbleBox
 
 通常和 Toast.showAttachedWidget 配合，显示有箭头的容器，箭头指向 [targetCenterOffset] 位置。根据 [child] 布局自动撑开容器
 
@@ -96,11 +96,11 @@ void showBubbleBox() {
 
 ```
 
-### my_button.dart
+### MyButton
 
 通用按钮，支持文字，圆角，背景色配置，使用 `AnimButton` 实现按钮点击动画。
 
-### my_dialog
+### MyDialog
 
 通用 `Dialog` 包装，支持背景，标题，内容，按钮文字配置。
 对于需要异步请求数据完成才决定是否关闭 `Dialog` 的情况可以传入 `onConfirm` 方法 
@@ -123,7 +123,7 @@ Get.dialog(MyDialog(
 ));
 ```
 
-### my_page_view 和 my_tab_bar
+### MyPageView 和 MyTabBar
 
 配合使用，可以实现 PageView 和 TabBar 的双向绑定
 
@@ -164,7 +164,7 @@ Column(
 
 ```
 
-### my_search_bar
+### MySearchBar
 
 标准化的 SearchBar，大部分样式不支持定制
 
@@ -176,7 +176,7 @@ MySearchBar(
 ),
 ```
 
-### pop_anim_box
+### PopAnimBox
 
 一般是用来包装 `Dialog` 使 `Dialog` 有弹出效果 
 
@@ -193,7 +193,7 @@ MySearchBar(
     );
 ```
 
-### tips_button
+### TipsButton
 
 Tips 按钮，效果可以看顶部的效果图
 

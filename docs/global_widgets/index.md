@@ -1,6 +1,6 @@
 ## 全局通用组件
 
-<img src = "images/global_widgets.GIF"  width = "40%"/>
+<img src = "../images/global_widgets.GIF"  width = "40%"/>
 
 ### anim_button
 让被包装的物体带点击事件，被点击的时候播放动画。

@@ -182,15 +182,15 @@ MySearchBar(
 
 ```dart
  Get.dialog(
-      PopAnimBox(
-        child: Dialog(
-            child: Container(
-          color: Colors.green,
-          width: 200,
-          height: 100,
-        )),
-      ),
-    );
+  PopAnimBox(
+    child: Dialog(
+        child: Container(
+      color: Colors.green,
+      width: 200,
+      height: 100,
+    )),
+  ),
+);
 ```
 
 ### TipsButton

@@ -2,7 +2,7 @@
 
 ### 使用方式
 
-配合 `app/utils/trace_event.dart` 使用，在 `TraceEvents` 内定义事件，调用 `T().event(e)` 发送事件。
+在 `TraceEvents` 内定义事件，调用 `T().event(e)` 发送事件。
 
 ```dart
 class TraceEvents {

@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+part 'mixins/trace_events.dart';
+
 final T = () => AppTraceService.to;
 
 /// 埋点服务

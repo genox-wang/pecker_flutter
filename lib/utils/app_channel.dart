@@ -7,19 +7,19 @@ import 'package:flutter/services.dart';
 class AppChannel {
   static final MethodChannel channel = MethodChannel("pecker_flutter");
 
-  static StreamController<AchEvent> _eventController =
-      StreamController<AchEvent>.broadcast();
+  static StreamController<AppChannelEvent> _eventController =
+      StreamController<AppChannelEvent>.broadcast();
 
-  static Stream<AchEvent> onEvent = _eventController.stream;
+  static Stream<AppChannelEvent> onEvent = _eventController.stream;
 
   static init() {
     channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case 'ios_pause':
-          _eventController.add(AchEvent(type: AchEventType.IOS_PAUSE));
+          _eventController.add(AppChannelEvent(type: AppChannelEventType.IOS_PAUSE));
           break;
         case 'ios_resume':
-          _eventController.add(AchEvent(type: AchEventType.IOS_RESUME));
+          _eventController.add(AppChannelEvent(type: AppChannelEventType.IOS_RESUME));
           break;
       }
       return null;
@@ -56,14 +56,14 @@ class AppChannel {
 }
 
 // AppChannel 事件
-enum AchEventType {
+enum AppChannelEventType {
   IOS_RESUME,
   IOS_PAUSE,
 }
 
-class AchEvent {
-  final AchEventType type;
+class AppChannelEvent {
+  final AppChannelEventType type;
   final dynamic? value;
 
-  AchEvent({required this.type, this.value});
+  AppChannelEvent({required this.type, this.value});
 }

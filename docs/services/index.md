@@ -47,7 +47,7 @@ AppService.to.deviceMode // 手机型号
 
 ### AppTraceService
 
-埋点服务, [使用说明](app_trace.md)
+埋点服务, [传送门](app_trace.md)
 
 ### AppUpraderService
 
@@ -135,11 +135,11 @@ BrowserService.to.openSystemBrowser('https://www.baidu.com');
 
 ### DBService
 
-数据库服务, [使用说明](db.md)
+数据库服务, [传送门](db.md)
 
 ### HttpService
 
-Http 服务, [使用说明](http.md)
+Http 服务, [传送门](http.md)
 ### ImagePickerService
 
 相册访问服务
@@ -223,4 +223,4 @@ VibrationService.to.tapVibrate();
 
 ### WebSocketService
 
-WebSocket 服务, [使用说明](ws.md)
+WebSocket 服务, [传送门](ws.md)

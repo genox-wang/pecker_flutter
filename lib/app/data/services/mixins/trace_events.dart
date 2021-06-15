@@ -1,3 +1,5 @@
+part of '../app_trace_service.dart';
+
 /// 定义事件
 ///
 /// ```

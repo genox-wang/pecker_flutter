@@ -139,6 +139,9 @@ class Config {
 ### 工具模块
 
 [传送门](docs/utils/index.md)
+### 路由模块
+
+[传送门](docs/route.md)
 
 ### 代码规范
 

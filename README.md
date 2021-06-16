@@ -93,12 +93,12 @@
 
 ### 第三方插件文档
 
-- [get](https://github.com/jonataslaw/getx/blob/master/README.zh-cn.md)
+- [getx](https://github.com/jonataslaw/getx/blob/master/README.zh-cn.md)
 - [moor](https://moor.simonbinder.eu/docs/)
 ### 工具安装
 
-安装 [get_cli](https://github.com/jonataslaw/get_cli),这样可以通过命令行创建界面和生成国际化代码，解放生产力。
-安装 [VSCode 插件](https://marketplace.visualstudio.com/items?itemName=get-snippets.get-snippets) 或者 [Android Studio/Intellij 插件](https://plugins.jetbrains.com/plugin/14975-getx-snippets)，它可以帮助在开发中提高开发效率，我用的最多的就是 `getfinal_`，不要问为什么，用了就知道。
+- 安装 [get_cli](https://github.com/jonataslaw/get_cli)，这样可以通过命令行创建界面和生成国际化代码，解放生产力。
+- 安装 [VSCode 插件](https://marketplace.visualstudio.com/items?itemName=get-snippets.get-snippets) 或者 [Android Studio/Intellij 插件](https://plugins.jetbrains.com/plugin/14975-getx-snippets)，它可以帮助在开发中提高开发效率，我用的最多的就是 `getfinal_`，不要问为什么，用了就知道。
 
 
 ## 如何使用

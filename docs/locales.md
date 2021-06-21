@@ -1,8 +1,5 @@
 ### 国际化
-
-#### 生成国际化文件
-
-##### 1. 在 `assets/locales` 文件夹下创建对应语言的国家化文本
+#### 1. 在 `assets/locales` 文件夹下创建对应语言的国家化文本
 
 en.json
 
@@ -50,7 +47,7 @@ zh.json
 }
 ```
 
-##### 2. 生成代码
+#### 2. 生成代码
 
 ```shell
 get generate locales assets/locales   
@@ -113,7 +110,7 @@ class Locales {
 }
 ```
 
-##### 3. 在项目中使用
+#### 3. 在项目中使用
 
 ```dart
 ListView(
@@ -128,7 +125,7 @@ ListView(
 )
 ```
 
-##### 4. 切换语言
+#### 4. 切换语言
 
 ```dart
 

@@ -24,7 +24,7 @@ import 'index.dart';
 /// 后端教育协议是基于 proto 协议的
 /// 通用请求体是 [CommonRequest]
 /// 通用返回体是 [CommonResponse]
-/// 
+///
 /// 下面代码是保证 ws 连接后执行相关代码
 /// ```
 /// everWsConnected(Function() doTask) {
@@ -38,13 +38,13 @@ import 'index.dart';
 ///   });
 /// }
 /// ```
-/// 
+///
 /// 下面代码是全局监听后端推送的信息
 /// ```
 /// _wsOnMessageSub = WebSocketService.to.onMessage.listen((resp) {
 ///   ...
 /// })
-/// 
+///
 /// _wsOnMessageSub.cancel();
 /// ```
 class WebSocketService extends GetxService {
@@ -89,8 +89,10 @@ class WebSocketService extends GetxService {
 
   /// 超时时间
   final int receiveTimeout = 10000;
+
   /// 断线重连延时
   final Duration reconnectDelay = 5.seconds;
+
   /// ping 间隔
   final Duration pingInterval = 8.seconds;
 
@@ -209,9 +211,9 @@ class WebSocketService extends GetxService {
   }
 
   /// 发送消息
-  /// 
+  ///
   /// 如果超过超时时间还没有收到消息则返回超时
-  /// 
+  ///
   /// ```
   /// resp = await WebSocketService.to.send(d);
   /// ```

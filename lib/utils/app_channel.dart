@@ -16,10 +16,12 @@ class AppChannel {
     channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case 'ios_pause':
-          _eventController.add(AppChannelEvent(type: AppChannelEventType.IOS_PAUSE));
+          _eventController
+              .add(AppChannelEvent(type: AppChannelEventType.IOS_PAUSE));
           break;
         case 'ios_resume':
-          _eventController.add(AppChannelEvent(type: AppChannelEventType.IOS_RESUME));
+          _eventController
+              .add(AppChannelEvent(type: AppChannelEventType.IOS_RESUME));
           break;
       }
       return null;

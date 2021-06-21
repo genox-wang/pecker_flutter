@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:get/get.dart';
 
+import '../../generated/locales.g.dart';
 import '../../utils/screen.dart';
 
 /// 底部弹出选择框
@@ -73,7 +74,10 @@ class MySelectionBottomSheet extends StatelessWidget {
             height: 20.w,
             thickness: 20.w,
           ),
-          buildButton(height: 150.w, text: '取消', onTap: () => Get.back()),
+          buildButton(
+              height: 150.w,
+              text: LocaleKeys.app_cancel.tr,
+              onTap: () => Get.back()),
           SizedBox(
             height: Get.mediaQuery.padding.bottom,
           ),

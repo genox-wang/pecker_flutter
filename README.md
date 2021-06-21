@@ -143,9 +143,14 @@ class Config {
 
 [传送门](docs/route.md)
 
+### 国际化
+
+[传送门](docs/locales.md)
+
 ### 代码规范
 
 [代码规范](docs/code_standards.md)
+
 
 ### 怎么创建新界面
 
@@ -158,54 +163,5 @@ $ get create page:your_page
 
 想要跳转到新创建的界面只需要指定 `Get.toNamed(Routes.YOUR_PAGE)` 就可以了
 
-### 怎么使用 dialog 或者 bottomSheet 包装 Page
-
-```dart
-// 使用 dialog 打开
-MyUI.showPageDailog(
-  routeName: Routes.LOGIN,
-  titleText: '登录注册',
-  onDispose: loginBindingDispose,
-)
-
-// 使用 bottomSheet 打开
-MyUI.showPageBottomSheet(
-  routeName: Routes.LOGIN,
-  onDispose: loginBindingDispose,
-);
-
-// 由于 Dialog 和 BottomSheet 关闭不会触发 bindings 的释放，所以需要手动释放 controller
-loginBindingDispose() {
-  Get.delete<LoginController>();
-}
-
-```
 
 
-### 怎么实现国际化
-
-在 `assets/locales` 目录里创建 `en_US.json`
-
-```json
-{
-  "app": {
-    "name": "Pecker Flutter"
-  },
-  "locales": {
-    "zh": "Chinese",
-    "en": "English"
-  }
-}
-```
-
-执行
-
-```bash
-$ get generate locales assets/locales
-```
-
-```dart
-Text(
-  LocaleKeys.app_name.tr
-)
-```

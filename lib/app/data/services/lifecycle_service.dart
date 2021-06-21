@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:pecker_flutter/utils/index.dart';
 
+import '../../../utils/index.dart';
 import 'websocket_service.dart';
 
 /// 应用生命周期监听服务

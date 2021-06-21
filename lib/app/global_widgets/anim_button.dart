@@ -4,7 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 /// 带动画的按钮
-/// 
+///
 /// 直接替换 [GestureDetector] 使用
 /// [tapTime] 按钮触发时机
 /// [group] 分组，同组不能同时触发点击事件

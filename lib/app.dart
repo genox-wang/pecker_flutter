@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -36,7 +38,7 @@ class App extends StatelessWidget {
       translationsKeys: AppTranslation.translations,
       // locale:  window.locale, // 将会按照此处指定的语言翻译
       locale: AppLocales.locale,
-      fallbackLocale: Locale('zh', 'CN'), // 添加一个回调语言选项，以备上面指定的语言翻译不存在
+      fallbackLocale: Locale('zh'), // 添加一个回调语言选项，以备上面指定的语言翻译不存在
       localizationsDelegates: [
         // RefreshLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -44,8 +46,8 @@ class App extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
-        const Locale('en', 'US'), // 美国英语
-        const Locale('zh', 'CN'), // 中文简体
+        const Locale('en'), // 美国英语
+        const Locale('zh'), // 中文简体
       ],
     );
   }

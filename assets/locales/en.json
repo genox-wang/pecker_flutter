@@ -1,0 +1,18 @@
+{
+  "app": {
+    "name": "Pecker Flutter",
+    "cancel": "Cancel"
+  },
+  "aphorism": {
+    "1": "The roots of education are bitter , but the fruit is sweet .",
+    "2": "Patience is bitter, but its fruit is sweet .",
+    "3": "To sensible men, every day is a day of reckoning.",
+    "4": "I have nothing to offer but blood , toil tears and sweat .",
+    "5": "Never leave that until tomorrow , which you can do today ."
+  },
+  "locales": {
+    "zh": "Chinese",
+    "en": "English",
+    "system": "System"
+  }
+}

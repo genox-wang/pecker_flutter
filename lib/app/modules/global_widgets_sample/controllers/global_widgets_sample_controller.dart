@@ -4,15 +4,13 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/index.dart';
-import '../../../data/services/index.dart';
 import '../../../global_widgets/index.dart';
 
-class HomeController extends GetxController {
+class GlobalWidgetsSampleController extends GetxController {
   final bubbleBoxBtnKey = GlobalKey();
 
   @override
   void onInit() {
-    TaskService.to.contextGot.complete();
     super.onInit();
   }
 

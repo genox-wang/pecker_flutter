@@ -92,9 +92,9 @@ class _MyButtonState extends State<MyButton> {
               widget.text ?? '',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: widget.fontSize ?? 16,
-                  color: widget.fontColor ??
-                      Theme.of(context).textTheme.button?.color),
+                fontSize: widget.fontSize ?? 16,
+                color: widget.fontColor ?? Colors.white,
+              ),
               maxLines: 2,
             ),
       ),

@@ -38,7 +38,7 @@ class SharedPreferecesService extends GetxService {
   String get deviceMode => _prefs.getString('deviceMode') ?? '';
   set deviceMode(String value) => _prefs.setString('deviceMode', value);
 
-  String get languageCode => _prefs.getString('languageCode') ?? 'zh';
+  String get languageCode => _prefs.getString('languageCode') ?? '';
   set languageCode(String value) => _prefs.setString('languageCode', value);
 
   bool getIsUpgradeInfoShowed(int buildNumber) =>

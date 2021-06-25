@@ -55,7 +55,7 @@ dependencies:
 
   dio: ^4.0.0
 
-  vibration: ^1.7.4-nullsafety.0
+  flutter_vibrate: ^1.1.0
 
   extended_image: ^4.1.0
 

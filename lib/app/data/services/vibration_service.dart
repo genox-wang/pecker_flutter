@@ -1,7 +1,10 @@
-import 'package:get/get.dart';
-import 'package:vibration/vibration.dart';
+import 'dart:async';
 
-/// 震动服务
+import 'package:get/get.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
+
+import 'index.dart';
+
 class VibrationService extends GetxService {
   static VibrationService get to => Get.find();
 
@@ -9,32 +12,25 @@ class VibrationService extends GetxService {
   bool get support => this._support.value;
   set support(bool value) => this._support.value = value;
 
-  final _customSupport = false.obs;
-  bool get customSupport => this._customSupport.value;
-  set customSupport(bool value) => this._customSupport.value = value;
-
-  final _amplitudeSupport = false.obs;
-  bool get amplitudeSupport => this._amplitudeSupport.value;
-  set amplitudeSupport(bool value) => this._amplitudeSupport.value = value;
-
   Future<VibrationService> init() async {
-    support = await Vibration.hasVibrator() ?? false;
-    customSupport = await Vibration.hasCustomVibrationsSupport() ?? false;
-    amplitudeSupport = await Vibration.hasAmplitudeControl() ?? false;
+    support = await Vibrate.canVibrate;
     return this;
   }
 
-  /// 点击震动
+  onClose() {
+    _thottleTimer?.cancel();
+    super.onClose();
+  }
+
+  Timer? _thottleTimer;
+
   tapVibrate() {
-    if (!support) return;
-    if (customSupport) {
-      if (amplitudeSupport) {
-        Vibration.vibrate(pattern: [0, 10], intensities: [100]);
-      } else {
-        Vibration.vibrate(duration: 50);
-      }
-    } else {
-      Vibration.vibrate();
+    if (_thottleTimer?.isActive == true) {
+      return;
     }
+    _thottleTimer = Timer(Duration(milliseconds: 300), () {});
+    if (!support) return;
+
+    Vibrate.feedback(FeedbackType.light);
   }
 }

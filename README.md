@@ -147,6 +147,10 @@ class Config {
 
 [传送门](docs/locales.md)
 
+### 暗黑和亮色主题
+
+[传送门](docs/theme.md)
+
 ### 代码规范
 
 [代码规范](docs/code_standards.md)

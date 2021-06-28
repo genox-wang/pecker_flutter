@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
+import 'package:pecker_flutter/app/themes/index.dart';
 
 import '../../../../utils/index.dart';
 import '../../../data/services/index.dart';
@@ -63,5 +66,24 @@ class HomeController extends GetxController {
         )),
       ),
     );
+  }
+
+  void changeTheme() async {
+    final result = await MyUI.showSelectionBottomSheet(
+        selections: ['跟随系统', '黑暗模式', '亮色模式']);
+    if (result is int) {
+      if (result == 0) {
+        S().appThemeMode = AppThemeMode.system;
+        Get.changeTheme(window.platformBrightness == Brightness.light
+            ? lightTheme
+            : darkTheme);
+      } else if (result == 1) {
+        S().appThemeMode = AppThemeMode.dark;
+        Get.changeTheme(darkTheme);
+      } else if (result == 2) {
+        S().appThemeMode = AppThemeMode.light;
+        Get.changeTheme(lightTheme);
+      }
+    }
   }
 }

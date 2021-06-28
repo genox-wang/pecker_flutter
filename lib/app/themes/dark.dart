@@ -2,6 +2,4 @@ import 'package:flutter/material.dart';
 
 import 'base.dart';
 
-final darkTheme = baseTheme.copyWith(
-  brightness: Brightness.dark,
-);
+final darkTheme = baseTheme(brightness: Brightness.dark);

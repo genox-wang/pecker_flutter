@@ -20,6 +20,8 @@ PODS:
   - flutter_inappwebview/Core (0.0.1):
     - Flutter
     - OrderedSet (~> 5.0)
+  - flutter_vibrate (0.0.1):
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -80,8 +82,6 @@ PODS:
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
-  - vibration (1.7.4-nullsafety.0):
-    - Flutter
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
@@ -91,6 +91,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
+  - flutter_vibrate (from `.symlinks/plugins/flutter_vibrate/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -100,7 +101,6 @@ DEPENDENCIES:
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
   - unique_ids (from `.symlinks/plugins/unique_ids/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
-  - vibration (from `.symlinks/plugins/vibration/ios`)
 
 SPEC REPOS:
   trunk:
@@ -129,6 +129,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_image_compress/ios"
   flutter_inappwebview:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
+  flutter_vibrate:
+    :path: ".symlinks/plugins/flutter_vibrate/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   package_info_plus:
@@ -147,8 +149,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/unique_ids/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
-  vibration:
-    :path: ".symlinks/plugins/vibration/ios"
 
 SPEC CHECKSUMS:
   audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
@@ -158,6 +158,7 @@ SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_image_compress: 082f8daaf6c1b0c9fe798251c750ef0ecd98d7ae
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
+  flutter_vibrate: c0ca4ac994ff97c3f147f69865458bbc0cc3508b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
   libwebp: 6bac0a99ba5a6bb7449a951ff22c484201985f68
@@ -176,7 +177,6 @@ SPEC CHECKSUMS:
   sqlite3_flutter_libs: 5651f8ff48e3b44d910863c4ea5916085b1b245f
   unique_ids: af43dfe3e491210975f4c61c57251dfbaf0031e3
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
-  vibration: 1ec279c4a1a7a646627b54039d812334b3f1114a
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

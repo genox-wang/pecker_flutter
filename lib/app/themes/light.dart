@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'base.dart';
 
-final lightTheme = baseTheme.copyWith(
+final lightTheme = baseTheme().copyWith(
   primaryColor: Color(0xFF1ac0c6),
   dividerColor: Colors.grey[200],
   dividerTheme: DividerThemeData(space: 1, thickness: 0.7),

@@ -12,7 +12,9 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
+    print(Get.isDarkMode);
     return Scaffold(
+      backgroundColor: Theme.of(context).canvasColor,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -33,6 +35,13 @@ class HomeView extends GetView<HomeController> {
                 onTap: () {
                   Get.toNamed(Routes.LOCALES_SAMPLE);
                 },
+              ),
+              SizedBox(height: 20.w),
+              MyButton(
+                width: 900.w,
+                height: 120.w,
+                text: 'Change theme',
+                onTap: controller.changeTheme,
               ),
             ],
           ),

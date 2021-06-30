@@ -1,7 +1,7 @@
 # pecker_flutter
 ## 历史痛点
 <details>
-  <summary> 展开详情</summary>
+<summary>展开详情</summary>
 
 目前线上产品的架构是通过 `mobx`, `sqflite`, `dio` 等几个基础插件，根据老项目具体需求搭建而成。
 期初项目比较简单，表现还是不错的。
@@ -23,7 +23,7 @@
 
 ## 目标
 <details>
-  <summary> 展开详情</summary>
+<summary>展开详情</summary>
 
 这个架构旨在解决以上所有痛点，不过万丈高楼平地起，先在这里定下目标逐个攻破。
 
@@ -44,7 +44,7 @@
 
 ## 项目结构
 <details>
-  <summary> 展开详情</summary>
+<summary>展开详情</summary>
 
 ```bash
 .

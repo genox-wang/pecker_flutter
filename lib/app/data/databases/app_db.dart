@@ -4,9 +4,9 @@ import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:pecker_flutter/app/data/databases/tables/students.dart';
 
 import 'daos/students.dart';
+import 'tables/students.dart';
 
 part 'app_db.g.dart';
 

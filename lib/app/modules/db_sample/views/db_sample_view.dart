@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:pecker_flutter/app/global_widgets/index.dart';
 
-import '../controllers/db_sample_controller.dart';
 import '../../../../utils/index.dart';
+import '../../../global_widgets/index.dart';
+import '../controllers/db_sample_controller.dart';
 
 class DbSampleView extends GetView<DbSampleController> {
   @override
@@ -59,7 +59,7 @@ class DbSampleView extends GetView<DbSampleController> {
     return controller.students.map((stu) {
       final index = i;
       i++;
-      
+
       return TableRow(children: [
         Text(stu.name),
         Text('${stu.score}'),

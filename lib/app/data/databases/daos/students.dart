@@ -1,7 +1,7 @@
 import 'package:moor/moor.dart';
-import 'package:pecker_flutter/app/data/databases/tables/students.dart';
 
 import '../app_db.dart';
+import '../tables/students.dart';
 
 part 'students.g.dart';
 

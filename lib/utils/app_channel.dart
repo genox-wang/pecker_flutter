@@ -65,7 +65,7 @@ enum AppChannelEventType {
 
 class AppChannelEvent {
   final AppChannelEventType type;
-  final dynamic? value;
+  final dynamic value;
 
   AppChannelEvent({required this.type, this.value});
 }

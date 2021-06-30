@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:get/get.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
-
-import 'index.dart';
+import 'package:get/get.dart';
 
 class VibrationService extends GetxService {
   static VibrationService get to => Get.find();

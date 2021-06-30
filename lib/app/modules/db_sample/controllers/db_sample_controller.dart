@@ -1,9 +1,9 @@
-import 'package:extended_image/extended_image.dart';
 import 'package:get/get.dart';
-import 'package:pecker_flutter/app/data/databases/app_db.dart';
-import 'package:pecker_flutter/app/data/databases/daos/students.dart';
-import 'package:pecker_flutter/app/data/services/index.dart';
-import 'package:pecker_flutter/utils/index.dart';
+
+import '../../../../utils/index.dart';
+import '../../../data/databases/app_db.dart';
+import '../../../data/databases/daos/students.dart';
+import '../../../data/services/index.dart';
 
 class DbSampleController extends GetxController {
   late StudentsDao dao;

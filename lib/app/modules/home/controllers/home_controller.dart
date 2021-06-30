@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
-import 'package:pecker_flutter/app/themes/index.dart';
 
 import '../../../../utils/index.dart';
 import '../../../data/services/index.dart';
 import '../../../global_widgets/index.dart';
+import '../../../themes/index.dart';
 
 class HomeController extends GetxController {
   final bubbleBoxBtnKey = GlobalKey();

@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 
-import 'package:pecker_flutter/app/modules/db_sample/bindings/db_sample_binding.dart';
-import 'package:pecker_flutter/app/modules/db_sample/views/db_sample_view.dart';
-
+import '../modules/db_sample/bindings/db_sample_binding.dart';
+import '../modules/db_sample/views/db_sample_view.dart';
 import '../modules/global_widgets_sample/bindings/global_widgets_sample_binding.dart';
 import '../modules/global_widgets_sample/views/global_widgets_sample_view.dart';
 import '../modules/home/bindings/home_binding.dart';

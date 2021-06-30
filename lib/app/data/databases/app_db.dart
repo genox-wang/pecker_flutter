@@ -4,14 +4,17 @@ import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:pecker_flutter/app/data/databases/tables/students.dart';
+
+import 'daos/students.dart';
 
 part 'app_db.g.dart';
 
 @UseMoor(
   // 绑定 tables
-  tables: [],
+  tables: [Students],
   // 绑定 daos
-  daos: [],
+  daos: [StudentsDao],
 )
 class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());

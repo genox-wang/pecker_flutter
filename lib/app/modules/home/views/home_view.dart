@@ -43,6 +43,13 @@ class HomeView extends GetView<HomeController> {
                 text: 'Change theme',
                 onTap: controller.changeTheme,
               ),
+              SizedBox(height: 20.w),
+              MyButton(
+                width: 900.w,
+                height: 120.w,
+                text: 'DB Sample',
+                onTap: () => Get.toNamed(Routes.DB_SAMPLE),
+              ),
             ],
           ),
         ),

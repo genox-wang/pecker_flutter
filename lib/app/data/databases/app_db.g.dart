@@ -15,12 +15,13 @@ class Student extends DataClass implements Insertable<Student> {
   factory Student.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    final intType = db.typeSystem.forDartType<int>();
-    final stringType = db.typeSystem.forDartType<String>();
     return Student(
-      id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
-      score: intType.mapFromDatabaseResponse(data['${effectivePrefix}score'])!,
+      id: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      name: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
+      score: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}score'])!,
     );
   }
   @override
@@ -78,7 +79,7 @@ class Student extends DataClass implements Insertable<Student> {
   int get hashCode =>
       $mrjf($mrjc(id.hashCode, $mrjc(name.hashCode, score.hashCode)));
   @override
-  bool operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Student &&
           other.id == this.id &&
@@ -217,8 +218,8 @@ class $StudentsTable extends Students with TableInfo<$StudentsTable, Student> {
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   Student map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return Student.fromData(data, _db, prefix: effectivePrefix);
+    return Student.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override

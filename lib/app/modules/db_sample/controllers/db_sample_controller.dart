@@ -29,11 +29,7 @@ class DbSampleController extends GetxController {
       name: randName(),
       score: MyTools.rand(100),
     );
-    dao
-        .updateOne(
-      data,
-    )
-        .then((value) {
+    dao.updateOne(data).then((value) {
       students[index] = data;
     });
   }
@@ -41,12 +37,7 @@ class DbSampleController extends GetxController {
   void addOne() {
     final name = randName();
     final score = MyTools.rand(100);
-    dao
-        .addOne(
-      name: name,
-      score: score,
-    )
-        .then((value) {
+    dao.addOne(name: name, score: score).then((value) {
       students.add(Student(id: value, name: name, score: score));
     });
   }

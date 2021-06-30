@@ -1,5 +1,7 @@
 ## DB
 
+> 使用样例参考[《数据库服务使用流程》](db_example.md)
+
 与 `app/data/databases` 配合使用
 
 `DbService.to.db` 就是 `AppDb` 实例。

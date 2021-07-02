@@ -161,16 +161,91 @@ class Config {
 [代码规范](docs/code_standards.md)
 
 
-### 怎么创建新界面
+## 注意事项
 
-在项目根目录，命令行执行
+1. `GetController` 不被引用的时候会自动释放，如果想让某个 `Controller` 常驻, 需使用 `permanent` 字段.
 
-```bash
-$ get create page:your_page
+```dart
+`Get.put(StageListController(), permanent: true);
 ```
-以上命令会自动在 modules 目录里创建 your_page 目录和代码结构，同时会在 routes 目录创建路由
 
-想要跳转到新创建的界面只需要指定 `Get.toNamed(Routes.YOUR_PAGE)` 就可以了
+2. `GetController` 的 `onInit` 方法里不要调用 `Get.back` 等方法退出页面，否则 `onClose` 不会被触发
 
+3. `ValueBuilder` 配合 `SharedPreferecesService` 可以包装快捷开关配置
+
+
+```dart
+// 音效是否开启
+bool get audioSwitch => _prefs.getBool('switchSound') ?? true;
+setAudioSwitch(value) => _prefs.setBool("switchSound", value);
+```
+
+```dart
+buildSwitchBlock(
+    context: context,
+    title: '音效',
+    initValue: S().audioSwitch,
+    setter: S().setAudioSwitch,
+),
+
+
+Widget buildSwitchBlock({
+    required context,
+    required String title,
+    String? subTitle,
+    String? subTitleOff,
+    required bool initValue,
+    required Function(bool) setter,
+    Function? onChanged,
+  }) {
+    if (subTitleOff != null) {
+      return ValueBuilder<bool?>(
+        initialValue: initValue,
+        builder: (value, updateFunc) => ListTile(
+          title: Text(title),
+          subtitle: value == true
+              ? (subTitle != null ? Text(subTitle) : null)
+              : Text(subTitleOff),
+          trailing: SizedBox(
+            height: 100.w,
+            width: 200.w,
+            child: CupertinoSwitch(
+              activeColor: Theme.of(context).primaryColor,
+              value: value ?? false,
+              onChanged: updateFunc,
+            ),
+          ),
+        ),
+        onUpdate: (value) {
+          setter(value ?? false);
+          onChanged?.call();
+        },
+      );
+    }
+
+    return DefaultTextStyle(
+        style: TextStyle(),
+        child: ListTile(
+          title: Text(title),
+          subtitle: subTitle != null ? Text(subTitle) : null,
+          trailing: SizedBox(
+            height: 100.w,
+            width: 200.w,
+            child: ValueBuilder<bool?>(
+              initialValue: initValue,
+              builder: (value, updateFunc) => CupertinoSwitch(
+                activeColor: Theme.of(context).primaryColor,
+                value: value ?? false,
+                onChanged: updateFunc,
+              ),
+              onUpdate: (value) {
+                setter(value ?? false);
+                onChanged?.call();
+              },
+            ),
+          ),
+        ));
+}
+```
 
 
